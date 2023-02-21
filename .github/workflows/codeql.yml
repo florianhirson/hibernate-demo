@@ -11,6 +11,7 @@
 #
 name: "CodeQL"
 
+
 on:
   push:
     branches: [ "main" ]
@@ -18,7 +19,7 @@ on:
     # The branches below must be a subset of the branches above
     branches: [ "main" ]
   schedule:
-    - cron: '44 3 * * 4'
+    - cron: '15 12 * * 3'
 
 jobs:
   analyze:
@@ -39,6 +40,11 @@ jobs:
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
+    - name: Setup Java JDK
+      uses: actions/setup-java@v3.10.0
+      with:
+          java-version: 17
+    
     - name: Checkout repository
       uses: actions/checkout@v3
 
