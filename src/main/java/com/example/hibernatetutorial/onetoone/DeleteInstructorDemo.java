@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 import com.example.hibernatetutorial.entity.Instructor;
 import com.example.hibernatetutorial.entity.InstructorDetail;
 
-public class CreateInstructorDemo {
+public class DeleteInstructorDemo {
 
 	public static void main(String[] args) {
 		SessionFactory factory = new Configuration()
@@ -20,23 +20,18 @@ public class CreateInstructorDemo {
 
 		try {
 			// create objects
-			Instructor instructor = new Instructor("Chad", "Darby", "chad.darby@luv2code.com");
-
-			InstructorDetail instructorDetail = new InstructorDetail("https://luv2code.com/youtube", "Luv 2 code");
-
-//			Instructor instructor = new Instructor("Florian", "Hirson", "florian.hirson@luv2code.com");
-//
-//			InstructorDetail instructorDetail = new InstructorDetail("https://luv2code.com/youtube", "3d printing");
-
-			// associate the objects
-			instructor.setInstructorDetail(instructorDetail);
 
 			// begin transaction
 			session.beginTransaction();
 
+			int instructorId = 1;
+
+			// retrieve instructor
+			Instructor instructor = session.get(Instructor.class, instructorId);
+
 			// save objects
-			System.out.println("Saving instructor: " + instructor);
-			session.persist(instructor);
+			System.out.println("Deleting instructor: " + instructor);
+			session.remove(instructor);
 
 			session.getTransaction().commit();
 
