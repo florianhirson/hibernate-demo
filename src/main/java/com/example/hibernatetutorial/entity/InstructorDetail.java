@@ -26,7 +26,12 @@ public class InstructorDetail {
 
 	// mappedBy refers to the instructorDetail property in the Instructor class
 	// cascade used to allow bidirectional cascading
-	@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+//	@OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+//	private Instructor instructor;
+
+	// Use all cascade types except REMOVE to prevent cascade delete
+	@OneToOne(mappedBy = "instructorDetail", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH })
 	private Instructor instructor;
 
 	public InstructorDetail() {
